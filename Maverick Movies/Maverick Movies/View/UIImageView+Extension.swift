@@ -39,7 +39,6 @@ extension UIImageView {
                 completion?(false)
                 return
             }
-            completion?(true)
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
                     imageCache.setObject(image, forKey: urlString as NSString)

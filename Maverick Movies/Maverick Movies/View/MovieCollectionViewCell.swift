@@ -13,6 +13,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "MovieCell"
     func setDetails(imageURLString: String, movietTitle: String) {
+        movieNameLabel.text = ""
         imageView.loadImageUsingCache(withUrl: imageURLString) { success in
             if !success {
                 DispatchQueue.main.async {
