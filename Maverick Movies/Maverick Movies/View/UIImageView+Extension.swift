@@ -9,8 +9,9 @@ import UIKit
 
 var imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
-    func loadImageUsingCache(withUrl urlString : String) {
+    func loadImageUsingCache(withUrl urlString : String, completion: ((Bool)->())? = nil) {
         guard let url = URL(string: urlString) else {
+            completion?(false)
             return
         }
         
@@ -35,9 +36,10 @@ extension UIImageView {
                     activityIndicator.removeFromSuperview()
                     self.image = UIImage(named: "noimage")
                 }
+                completion?(false)
                 return
             }
-
+            completion?(true)
             DispatchQueue.main.async {
                 if let image = UIImage(data: data!) {
                     imageCache.setObject(image, forKey: urlString as NSString)

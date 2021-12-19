@@ -9,4 +9,5 @@ import Foundation
 
 protocol MovieNetworkStore {
     func fetchMovies(with name: String, page: Int, completion: @escaping (SearchResult?, MovieError?)->())
+    func fetchMovieDetail(with imdbID: String, completion: @escaping (MovieDetail?, MovieError?)-> ())
 }

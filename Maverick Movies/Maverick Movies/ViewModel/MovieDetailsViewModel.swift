@@ -9,4 +9,18 @@ import Foundation
 
 class MovieDetailsViewModel {
     
+    var movieStore: MovieNetworkStore
+    
+    var movieDetail: MovieDetail?
+    
+    init(movieStore: MovieNetworkStore) {
+        self.movieStore = movieStore
+    }
+    
+    func fetchMovieDetail(with imdbID: String, completion: @escaping (Bool)->()) {
+        movieStore.fetchMovieDetail(with: imdbID) { movieDetail, error in
+            self.movieDetail = movieDetail
+            completion(movieDetail != nil)
+        }
+    }
 }

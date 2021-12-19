@@ -9,8 +9,16 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet weak var movieNameLabel: UILabel!
+    
     static let identifier = "MovieCell"
-    func setDetails(imageURLString: String) {
-        imageView.loadImageUsingCache(withUrl: imageURLString)
+    func setDetails(imageURLString: String, movietTitle: String) {
+        imageView.loadImageUsingCache(withUrl: imageURLString) { success in
+            if !success {
+                DispatchQueue.main.async {
+                    self.movieNameLabel.text = movietTitle
+                }
+            }
+        }
     }
 }

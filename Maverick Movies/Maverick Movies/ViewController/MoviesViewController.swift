@@ -19,6 +19,7 @@ class MoviesViewController: UICollectionViewController {
     var movies: [Movie] = []
     private lazy var dataSource = makeDataSource()
     var isLoadingList = false
+    var selectedRow: Int?
     
     enum Section {
         case main
@@ -45,7 +46,7 @@ class MoviesViewController: UICollectionViewController {
         let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, movie in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell
             if let poster = movie.poster {
-                cell?.setDetails(imageURLString: poster)
+                cell?.setDetails(imageURLString: poster, movietTitle: movie.title ?? "Name Unknown.")
             }
             return cell
         }
@@ -71,7 +72,7 @@ class MoviesViewController: UICollectionViewController {
     
     private final func fetchMovies() {
         self.isLoadingList = true
-        moviesListViewModel.fetchMovies(for: "Marvel") { movies, error in
+        moviesListViewModel.fetchMovies(for: "Doctor") { movies, error in
             self.isLoadingList = false
             if let movies = movies {
                 self.movies = movies
@@ -82,6 +83,13 @@ class MoviesViewController: UICollectionViewController {
             } else if let error = error {
                 print(error)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailsVC = segue.destination as! MovieDetailsViewController
+        if let row = selectedRow, let imdbID = movies[row].imdbID, let title = movies[row].title {
+            detailsVC.setDetails(imdbID: imdbID, title: title)
         }
     }
     
@@ -97,6 +105,11 @@ extension MoviesViewController {
 
 // MARK: - Collection View Flow Layout Delegate
 extension MoviesViewController: UICollectionViewDelegateFlowLayout {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "MovieDetailsSegue", sender: nil)
+    }
     
     func collectionView(
         _ collectionView: UICollectionView,

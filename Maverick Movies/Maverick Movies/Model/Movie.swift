@@ -8,6 +8,7 @@
 import Foundation
 
 struct Movie: Codable, Hashable {
+    var id = UUID()
     var title: String?
     var year: String?
     var imdbID: String?
@@ -27,7 +28,7 @@ struct Movie: Codable, Hashable {
     }
     
     static func == (lhs: Movie, rhs: Movie) -> Bool {
-        lhs.imdbID == rhs.imdbID
+        lhs.id == rhs.id
     }
     
 }
