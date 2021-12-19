@@ -11,4 +11,5 @@ enum AppConstants: String {
     case APIKey = "b9bd48a6"
     case movie = "movie"
     case title = "title"
+    case defaultError = "Something went wrong."
 }

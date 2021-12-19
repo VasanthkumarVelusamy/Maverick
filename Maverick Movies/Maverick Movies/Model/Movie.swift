@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     var title: String?
     var year: String?
     var imdbID: String?
@@ -21,4 +21,15 @@ struct Movie: Codable {
         case type = "Type"
         case poster = "Poster"
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(imdbID)
+    }
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.imdbID == rhs.imdbID
+    }
+    
 }
+
+
