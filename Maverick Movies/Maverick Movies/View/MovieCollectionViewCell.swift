@@ -15,6 +15,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func setDetails(imageURLString: String, movietTitle: String) {
         movieNameLabel.text = ""
         imageView.loadImageUsingCache(withUrl: imageURLString) { success in
+            // Displaying movie name when poster is not available.
             if !success {
                 DispatchQueue.main.async {
                     self.movieNameLabel.text = movietTitle

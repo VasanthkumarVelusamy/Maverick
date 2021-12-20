@@ -24,6 +24,10 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="OFo-mb-a3z">
+                            <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="MovieCell" id="siK-8C-6Fh" customClass="MovieCollectionViewCell" customModule="Maverick_Movies" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -64,8 +68,11 @@
                             <outlet property="delegate" destination="PMa-xM-57d" id="LDP-HE-CIU"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Film List" id="1uP-PQ-5E4"/>
+                    <navigationItem key="navigationItem" title="Film List" id="1uP-PQ-5E4">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="person.circle" catalog="system" id="SXR-P7-Dgc"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="OFo-mb-a3z" id="fIc-mP-T0Z"/>
                         <segue destination="WH1-Sj-74w" kind="show" identifier="MovieDetailsSegue" id="QD4-Zc-fOP"/>
                     </connections>
                 </collectionViewController>
@@ -288,9 +295,17 @@
                                                     <constraint firstItem="Ksr-5A-JTF" firstAttribute="top" secondItem="g57-mZ-e6c" secondAttribute="top" id="wUj-Nm-6Lr"/>
                                                 </constraints>
                                             </stackView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="FvR-pg-9nh">
+                                                <rect key="frame" x="346" y="282" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="o8J-s1-vns"/>
+                                                    <constraint firstAttribute="width" constant="44" id="ybL-ZB-v7M"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="gYA-hz-jbU" firstAttribute="trailing" secondItem="FvR-pg-9nh" secondAttribute="trailing" constant="24" id="2ut-wW-8Vi"/>
                                             <constraint firstItem="gYA-hz-jbU" firstAttribute="leading" secondItem="iNb-iI-cEZ" secondAttribute="leading" id="3Xu-fw-CdN"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="agF-6U-46y" secondAttribute="bottom" constant="16" id="5nc-xj-HAr"/>
                                             <constraint firstItem="SwX-mT-nJ5" firstAttribute="top" secondItem="knO-JI-XGi" secondAttribute="bottom" constant="32" id="DP2-ND-GAL"/>
@@ -300,6 +315,7 @@
                                             <constraint firstItem="pi5-ve-Mhm" firstAttribute="trailing" secondItem="knO-JI-XGi" secondAttribute="trailing" id="R8i-pp-QNA"/>
                                             <constraint firstItem="pi5-ve-Mhm" firstAttribute="leading" secondItem="knO-JI-XGi" secondAttribute="leading" id="Wxe-hG-Bm0"/>
                                             <constraint firstAttribute="trailing" secondItem="SwX-mT-nJ5" secondAttribute="trailing" constant="24" id="YEg-Qe-zhS"/>
+                                            <constraint firstItem="gYA-hz-jbU" firstAttribute="bottom" secondItem="FvR-pg-9nh" secondAttribute="bottom" constant="24" id="Yvd-aT-BBM"/>
                                             <constraint firstItem="agF-6U-46y" firstAttribute="top" secondItem="pi5-ve-Mhm" secondAttribute="bottom" constant="32" id="dff-ER-KZs"/>
                                             <constraint firstItem="SwX-mT-nJ5" firstAttribute="leading" secondItem="knO-JI-XGi" secondAttribute="leading" id="e9b-RI-YuV"/>
                                             <constraint firstItem="agF-6U-46y" firstAttribute="leading" secondItem="pi5-ve-Mhm" secondAttribute="leading" id="eUU-ZK-QpH"/>
@@ -380,6 +396,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="play" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -8,10 +8,10 @@
 import Foundation
 
 class MoviesListViewModel {
-    var movieStore: MovieNetworkStore
+    private var movieStore: MovieNetworkStore
     var movies: [Movie] = []
-    var totalItems = Int.max
-    var page = 1
+    private var totalItems = Int.max
+    private var page = 1
     
     init(movieStore: MovieNetworkStore) {
         self.movieStore = movieStore

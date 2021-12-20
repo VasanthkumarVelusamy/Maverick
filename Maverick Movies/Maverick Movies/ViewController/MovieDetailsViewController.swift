@@ -8,27 +8,29 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
+    // MARK: - Outlets
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var yearLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var imdbRatingLabel: UILabel!
+    @IBOutlet private weak var synopsisLabel: UILabel!
+    @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var reviewsLabel: UILabel!
+    @IBOutlet private weak var popularityLabel: UILabel!
+    @IBOutlet private weak var directorLabel: UILabel!
+    @IBOutlet private weak var writerLabel: UILabel!
+    @IBOutlet private weak var actorsLabel: UILabel!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var imdbRatingLabel: UILabel!
-    @IBOutlet weak var synopsisLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var reviewsLabel: UILabel!
-    @IBOutlet weak var popularityLabel: UILabel!
-    @IBOutlet weak var directorLabel: UILabel!
-    @IBOutlet weak var writerLabel: UILabel!
-    @IBOutlet weak var actorsLabel: UILabel!
-    
+    // MARK: - Properties
     private var imdbID = ""
-    let movieDetailsViewModel = MovieDetailsViewModel(movieStore: MovieNetworkManager())
+    private let movieDetailsViewModel = MovieDetailsViewModel(movieStore: MovieNetworkManager())
 
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Film Detail"
@@ -37,36 +39,7 @@ class MovieDetailsViewController: UIViewController {
         showLoading()
     }
     
-    private final func showLoading() {
-        activityIndicator.startAnimating()
-        contentView.isHidden = true
-    }
-    
-    private final func hideLoading(with error: String? = nil) {
-        activityIndicator.stopAnimating()
-        if let error = error {
-//            contentView.isHidden = true
-            errorLabel.text = error
-        } else {
-            contentView.isHidden = false
-        }
-    }
-    
-    final func setDetails(imdbID: String, title: String) {
-        self.imdbID = imdbID
-    }
-    
-    private final func getMovieDetails() {
-        movieDetailsViewModel.fetchMovieDetail(with: imdbID) { success in
-            if success {
-                DispatchQueue.main.async {
-                    self.hideLoading()
-                    self.setupUIWithDetails()
-                }
-            }
-        }
-    }
-    
+    // MARK: - Configurations
     private final func setupUIWithDetails() {
         guard let detail = movieDetailsViewModel.movieDetail else { return }
         
@@ -88,6 +61,37 @@ class MovieDetailsViewController: UIViewController {
         directorLabel.text = detail.director
         writerLabel.text = detail.writer
         actorsLabel.text = detail.actors
+    }
+    
+    // MARK: - Utility Methods
+    private final func showLoading() {
+        activityIndicator.startAnimating()
+        contentView.isHidden = true
+    }
+    
+    private final func hideLoading(with error: String? = nil) {
+        activityIndicator.stopAnimating()
+        if let error = error {
+            errorLabel.text = error
+        } else {
+            contentView.isHidden = false
+        }
+    }
+    
+    final func setDetails(imdbID: String, title: String) {
+        self.imdbID = imdbID
+    }
+    
+    // MARK: - API Request
+    private final func getMovieDetails() {
+        movieDetailsViewModel.fetchMovieDetail(with: imdbID) { success in
+            if success {
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                    self.setupUIWithDetails()
+                }
+            }
+        }
     }
 
 }

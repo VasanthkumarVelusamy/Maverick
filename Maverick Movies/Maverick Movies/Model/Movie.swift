@@ -30,7 +30,6 @@ struct Movie: Codable, Hashable {
     static func == (lhs: Movie, rhs: Movie) -> Bool {
         lhs.id == rhs.id
     }
-    
 }
 
 

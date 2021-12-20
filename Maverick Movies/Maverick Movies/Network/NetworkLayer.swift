@@ -28,7 +28,6 @@ class NetworkLayer {
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
 
             if let err = error {
-                print(err.localizedDescription)
                 completion(.failure(err))
                 return
             }

@@ -154,17 +154,18 @@
 		7663249D276CCD6600598F60 /* Maverick Movies */ = {
 			isa = PBXGroup;
 			children = (
-				766324AC276CCD6900598F60 /* Info.plist */,
+				766F9957277059CF004FB966 /* Constants */,
+				766F9958277059F3004FB966 /* Errors */,
+				766F9956277059BD004FB966 /* Extensions */,
 				766324D1276CCE8F00598F60 /* Model */,
+				766324EF276CFD9700598F60 /* Network */,
 				766324D5276CCEC600598F60 /* Resources */,
-				766324D3276CCE9D00598F60 /* Supporting Files */,
 				7620AAED276D97EB0027BEA8 /* Storyboard */,
+				766324D3276CCE9D00598F60 /* Supporting Files */,
 				766324D4276CCEB000598F60 /* View */,
 				766324D2276CCE9400598F60 /* ViewController */,
 				766324D9276CCEED00598F60 /* ViewModel */,
-				766324DD276CDA5700598F60 /* MovieNetworkStore.swift */,
-				766324E3276CDB4000598F60 /* MovieError.swift */,
-				766324EF276CFD9700598F60 /* Network */,
+				766324AC276CCD6900598F60 /* Info.plist */,
 			);
 			path = "Maverick Movies";
 			sourceTree = "<group>";
@@ -200,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				766324A2276CCD6600598F60 /* MoviesViewController.swift */,
-				7620AAEB276D8D010027BEA8 /* Constants.swift */,
 				7620AAFA276F231B0027BEA8 /* MovieDetailsViewController.swift */,
 			);
 			path = ViewController;
@@ -219,9 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				7620AAEE276DADD30027BEA8 /* MovieCollectionViewCell.swift */,
-				7620AAF1276DB1130027BEA8 /* UIImageView+Extension.swift */,
 				7620AAF4276F0C950027BEA8 /* LoadingFooterView.swift */,
-				7620AAF5276F0C950027BEA8 /* LoadingFooterView.xib */,
+				766F9955277059B2004FB966 /* XIBs */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,11 +245,44 @@
 		766324EF276CFD9700598F60 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				766324DD276CDA5700598F60 /* MovieNetworkStore.swift */,
 				766324E0276CDAC800598F60 /* MovieNetworkManager.swift */,
 				766324E6276CDE3100598F60 /* NetworkLayer.swift */,
 				766324E9276CDEC800598F60 /* Router.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		766F9955277059B2004FB966 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				7620AAF5276F0C950027BEA8 /* LoadingFooterView.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+		766F9956277059BD004FB966 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7620AAF1276DB1130027BEA8 /* UIImageView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		766F9957277059CF004FB966 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7620AAEB276D8D010027BEA8 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		766F9958277059F3004FB966 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				766324E3276CDB4000598F60 /* MovieError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

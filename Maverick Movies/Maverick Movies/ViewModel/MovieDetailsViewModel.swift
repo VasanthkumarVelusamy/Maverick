@@ -9,7 +9,7 @@ import Foundation
 
 class MovieDetailsViewModel {
     
-    var movieStore: MovieNetworkStore
+    private var movieStore: MovieNetworkStore
     
     var movieDetail: MovieDetail?
     
